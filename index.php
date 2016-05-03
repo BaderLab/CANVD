@@ -1,16 +1,14 @@
 <?php
 	$root_path = "./";
   include_once('./common.php');
-
   //Generate sitewide database statistics
   include_once('./generate_stats.php');
 	include_once('./header.php');
-
 ?>
 
       <span id="title_fix"></span>
 
-	    <p align="justify">The <span style="color:#ea2f10">Can</span>cer <span style="color:#ea2f10">V</span>ariants <span style="color:#ea2f10">D</span>atabase (<span style="color:#ea2f10">Can-VD</span>) is an online resource for the assessment of the impact of cancer mutations on protein-protein interactions (PPI) networks. <a href='faqs/'>Read more...</a></p>
+	    <p align="justify">The <span style="color:#ea2f10">Can</span>cer <span style="color:#ea2f10">V</span>ariants <span style="color:#ea2f10">D</span>atabase (<span style="color:#ea2f10">Can-VD</span>) is an online resource for the assessment of the impact of cancer mutations on protein-protein interaction (PPI) networks. <a href='faqs/'>Read more...</a></p>
 
 	  </div>
 	<div class="container">
@@ -40,16 +38,13 @@
                              $query_params = array();
                              $stmt = $dbh->prepare($query);
                              $stmt->execute($query_params);
-
                               while ($row = $stmt->fetch())
                               {
-
                                 ?>
         <div style="margin-bottom:15px;">
         <span  style="display:block;margin-bottom:1px;"><a href="./announce/"><b style="display:block;"><?php echo $row[2];?></b></a><i style="padding-right:5px;font-size:0.75em;"><?php echo $row[1];?> </i></span>
         <?php #echo '<p align='justify'>';
         echo substr($row[3], 0, strpos($row[3], ".") + 1);
-
         ?>
         <br><a href='announce/'>Read more...</a>
         </div>
@@ -84,7 +79,6 @@
         $query_params = array();
         $stmt = $dbh->prepare($query);
         $stmt->execute($query_params);
-
         while ($row = $stmt->fetch())
         {
         ?>
@@ -108,7 +102,6 @@
         $query_params = array();
         $stmt = $dbh->prepare($query);
         $stmt->execute($query_params);
-
         while ($row = $stmt->fetch())
         {
       ?>
@@ -170,7 +163,6 @@
 
               <script>
               $(function() {
-
                 $("#search_form").on("submit", function( event ){
                     if ($("#search_input").val() == ''){
                       event.preventDefault();
@@ -180,7 +172,6 @@
                       $("#search_btn").html("<div class='spinner3' style='margin-left:10px;margin-right:10px;'><div class='cube1 cube3'></div><div class='cube2 cube3'></div></div>");
                     }
                 });
-
                 //Get total counts for the tables
 		var tissue_total = 0;
 		var pwm_total = 0;
@@ -202,17 +193,6 @@
                     error:function(){
                     }
                 });
-
-                $('#sl1').slider();
-                $('#sl2').slider();
-                $('#sl3').slider();
-                $('#sl4').slider();
-                $('#sl5').slider();
-                $('#sl6').slider();
-                $('#sl7').slider();
-                $('#sl8').slider();
-                $('#sl9').slider();
-                $('#sl10').slider();
                 function update_protein_view()
                 {
                 $("#protein-table").fadeOut('fast');
@@ -240,7 +220,6 @@
                         }
                     });
                 }
-
                 update_protein_view();
                 var onTheClick = false;
                 $("#protein-back").on( "click", function() {
@@ -251,19 +230,15 @@
                     update_protein_view();
                   }
                 });
-
                 $("#protein-forward").on( "click", function() {
                   onTheClick = true;
 		  if($("#protein-page").data("page") +10< protein_total){
 		  //alert($("#protein-page").data("page") +10);
 		  //alert(protein_total);
                   $("#protein-page").data("page", $("#protein-page").data("page")+ 10);
-
                   update_protein_view();
 		  }
                 });
-
-
                 function update_pwm_view()
                 {
                   var test = $("#pwm-page").data("page");
@@ -280,21 +255,17 @@
                         data: {start:test},
                         success: function(results){
                             if (results ==''){
-
                             }
                             else{
                             $("#pwm-table-body").html('');
                             $("#pwm-table-body").html(results);
                             }
-
                         },
                         error:function(){
                         }
                     });
                 }
-
                 update_pwm_view();
-
                 $("#pwm-back").on( "click", function() {
                   if ($("#pwm-page").data("page") != 0)
                   {
@@ -302,15 +273,12 @@
                     update_pwm_view();
                   }
                 });
-
                 $("#pwm-forward").on( "click", function() {
 		if($("#pwm-page").data("page") +10< pwm_total){
                   $("#pwm-page").data("page", $("#pwm-page").data("page")+ 10);
                   update_pwm_view();
 		}
                 });
-
-
                 function update_tissue_view()
                 {
                   var test = $("#tissue-page").data("page");
@@ -340,9 +308,7 @@
                         }
                     });
                 }
-
                 update_tissue_view();
-
                 $("#tissue-back").on( "click", function() {
                   if ($("#tissue-page").data("page") != 0)
                   {
@@ -350,14 +316,12 @@
                     update_tissue_view();
                   }
                 });
-
                 $("#tissue-forward").on( "click", function() {
 		 if ($("#tissue-page").data("page")+ 10 < tissue_total){
                   $("#tissue-page").data("page", $("#tissue-page").data("page")+ 10);
                   update_tissue_view();
 		}
                 });
-
                 $("#advanced_btn").on( "click", function() {
                   if ($("#advanced_btn").text() == 'Advanced'){
                     $("#advanced_btn").addClass("btn-info");
@@ -371,17 +335,13 @@
                     $("#browse-and-tabs").show();
                     $("#advanced-search-box").hide();
                   }
-
                 });
-
                 $("body").on( "click", ".pwm-img", function() {
                   $("#testing").modal('show');
                   $("#actual-image-content").css("padding-top", "15px");
                   $("#actual-image-content").html($(this).clone().css("height", "200px"));
                   $("#actual-image-content").append($(this).data("content"));
                 });
-
-
               });
               </script>
 
